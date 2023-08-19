@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./output.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5a0b948d4f.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../output.css">
+    <link rel="stylesheet" href="./output.css">
     <title>Document</title>
 </head>
 
@@ -33,16 +32,16 @@
             </div>
             <div class="flex items-center gap-2">
                 <button id="logInBut"
-                    class="bg-blue-600 rounded-2xl p-2 text-sm outline-none text-white font-semibold"><a href="./AppFiles/signin.html">Log In</a></button>
-                <button id="logInBut"
-                    class="bg-blue-600 rounded-2xl p-2 text-sm outline-none text-white font-semibold"><a href="./AppFiles/signup.html">Sign Up</a></button>
+                    class="bg-blue-600 rounded-2xl p-2 text-sm outline-none text-white font-semibold">Log In</button>
+                <button id="logOutBut"
+                    class="bg-blue-600 rounded-2xl p-2 text-sm outline-none text-white font-semibold">Log Out</button>
                 <div class="sm:hidden">
                     <i id="bar" class="fa-solid fa-bars text-white"></i>
                 </div>
             </div>
         </nav>
     </header>
-    <main id="blogContainer" class="container flex flex-col items-center space-y-4 mx-auto py-8 px-4 ">
+    <main id="blogContainer" class="container flex flex-col items-center space-y-8 mx-auto py-8 px-4 ">
         <!-- <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
             <h2 class="text-2xl font-semibold text-gray-800 mb-4">Create a Post</h2> -->
         <!-- Input field for post content -->
@@ -60,9 +59,9 @@
                 class="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-purple-500">
                 Add Post
             </button> -->
-            <div class="bg-white p-8 rounded-lg shadow-md w-3/4">
+            <!-- <div class="bg-white p-8 rounded-lg shadow-md w-3/4"> -->
                 <!-- Rounded Image -->
-                <div class="flex mb-4 space-x-4">
+                <!-- <div class="flex mb-4 space-x-4">
                     <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Author" class="w-16 h-16 rounded-full">
         
                     <div class="flex flex-col  justify-between mb-4">
@@ -81,8 +80,8 @@
                     <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Edit</button>
                     <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Delete</button>
                 </div>
-            </div>
-        </div>
+            </div> -->
+        <!-- </div> -->
     </main>
     <script type="module" src="index.mjs"></script>
 </body>

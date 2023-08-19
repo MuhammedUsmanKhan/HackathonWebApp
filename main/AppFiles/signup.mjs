@@ -21,9 +21,10 @@ const auth = getAuth(app);
 const db = getFirestore(app)
 const storage = getStorage(app)
 let user = auth.currentUser
-let userAdd = async (userauthID, userEmail, firstName, lastName) => {
+let userAdd = async (userEmail, firstName, lastName) => {
   console.log(userEmail, firstName , lastName)
-  await setDoc(doc(db, "userDetails", userauthID), {
+  let user = auth.currentUser
+  await setDoc(doc(db, "userDetails", userEmail), {
     userEmail: userEmail,
     firstName: firstName,
     lastName: lastName
@@ -104,10 +105,12 @@ let userSignedIn = (event) => {
   const lastName = document.getElementById('lastName').value
   const userEmail = document.getElementById('userEmail').value
   const userPassword = document.getElementById('userPassword').value
-  let user = auth.currentUser
+  
   console.log(user)
   //console.log("Document written with ID: ", docRef.id);
-
+  // const userID = user.uid
+  // console.log(userID)
+  userAdd(userEmail, firstName, lastName)
   createUserWithEmailAndPassword(auth, userEmail, userPassword)
     .then((userCredential) => {
 
@@ -116,9 +119,8 @@ let userSignedIn = (event) => {
       // /usersProfileImage
 
       console.log(user.uid)
-      let userID = user.uid
-      console.log(userID)
-      userAdd(userID, userEmail, firstName, lastName)
+      //let userID = user.uid
+      //console.log(userID)
 
     })
     .catch((error) => {

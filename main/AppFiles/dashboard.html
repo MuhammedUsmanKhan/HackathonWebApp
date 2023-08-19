@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./output.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5a0b948d4f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../output.css">
     <title>Document</title>
@@ -25,8 +24,8 @@
                     <i id="x" class="fa-solid fa-x text-blue-600"></i>
                 </div> -->
                 <ul class="flex p-5  justify-start gap-8 flex-col md:flex-row md:justify-evenly text-white">
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="./profile.html">Profile</a></li>
+                    <li><a href="./dashboard.html">Dashboard</a></li>
                     <!-- <li><a href="#">Services</a></li>
                     <li><a href="#">Portfolio</a></li>
                     <li><a href="#">Contact</a></li> -->
@@ -47,11 +46,11 @@
             <!-- Input field for post content -->
             <div class="mb-4">
                 <label for="postTitle" class="block text-sm font-medium text-gray-700">Post Title:</label>
-                <input id="postTitle" class="w-full rounded-md p-2 border-gray-700 border-2">
+                <input id="postTitle" pattern=".{5,50}" class="w-full rounded-md p-2 border-gray-700 border-2">
             </div>
             <div class="mb-4">
                 <label for="postContent" class="block text-sm font-medium text-gray-700">Post Content:</label>
-                <textarea id="postContent"
+                <textarea id="postContent" maxlength="3000" minlength="100"
                     class="w-full rounded-md resize-none h-24 border-gray-700 border-2 outline-none p-2 "></textarea>
             </div>
             <!-- Add Post button -->
@@ -59,6 +58,9 @@
                 class="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-purple-500">
                 Add Post
             </button>
+        </div>
+        <div id="blogContainer" class="container flex flex-col items-center space-y-8 mx-auto py-8 px-4">
+
         </div>
     </main>
     <script type="module" src="dashboard.mjs"></script>

@@ -131,20 +131,20 @@ submitForm.addEventListener(`submit`, async (event) => {
     });
 })
 
-// const CheckingUser = (user) => {
-//   if (user) {
+const CheckingUser = (user) => {
+  if (user) {
 
-//     console.log('User is logged in:', user.email);
+    console.log('User is logged in:', user.email);
 
-//     // Perform the redirect here, e.g.:
-//     window.location.href = './profile.html';
+    // Perform the redirect here, e.g.:
+    window.location.href = './dashboard.html';
 
 
-//     //const interval = setInterval(myIntervalFunction, 1000); // 1000 milliseconds = 1 second
-//   } else {
+    //const interval = setInterval(myIntervalFunction, 1000); // 1000 milliseconds = 1 second
+  } else {
 
-//     console.log('User is logged out');
-//   }
-// };
+    console.log('User is logged out');
+  }
+};
 
-// onAuthStateChanged(auth, CheckingUser)
+onAuthStateChanged(auth, CheckingUser)
