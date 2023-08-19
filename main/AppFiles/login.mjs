@@ -1,20 +1,20 @@
 //////////////Should modify it////////////////////////
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-import { getFirestore, collection, getDocs, addDoc, orderBy, serverTimestamp, query, onSnapshot, where, doc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword , signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
+import { getFirestore, collection, setDoc, addDoc, orderBy, serverTimestamp, query, onSnapshot, where, doc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-storage.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 //////////////Should modify it////////////////////////
 const firebaseConfig = {
-  apiKey: "AIzaSyClpo8swwA_PSFRGYDqOgWkVRwPjloDt5c",
-  authDomain: "threadapp-3129d.firebaseapp.com",
-  projectId: "threadapp-3129d",
-  storageBucket: "threadapp-3129d.appspot.com",
-  messagingSenderId: "902832742728",
-  appId: "1:902832742728:web:c80c2d85e2921748a5937d"
+  apiKey: "AIzaSyDizRqFG9fzEbtNmhmkdsuQVZ9O1vQMAHY",
+  authDomain: "saylani-mini-hackathon-48c03.firebaseapp.com",
+  projectId: "saylani-mini-hackathon-48c03",
+  storageBucket: "saylani-mini-hackathon-48c03.appspot.com",
+  messagingSenderId: "284827950058",
+  appId: "1:284827950058:web:e5218c4c294528be4c7093"
 };
 
 // Initialize Firebase
@@ -86,9 +86,7 @@ lightMode.addEventListener(`click`, () => {
         footer.classList.toggle('text-white')
     }
 })
-const userEmail = document.getElementById('userEmail')
-const userPassword = document.getElementById('userPassword')
-const submitForm = document.getElementById('submitForm')
+
 // let VerifyUser = (event) => {
 //     event.preventDefault()
 //     // try {
@@ -110,19 +108,21 @@ const submitForm = document.getElementById('submitForm')
 // }
 // submitForm.addEventListener('submit', VerifyUser)
 
-
+let submitForm = document.getElementById('submitForm')
 //const db = getFirestore(app)
-let but = document.querySelector(`#but`)
-but.addEventListener(`click`, async () => {
+submitForm.addEventListener(`submit`, async (event) => {
 
-  let email = document.querySelector(`#Semail`).value
-  let password = document.querySelector(`#Spass`).value
-
-  signInWithEmailAndPassword(auth, email, password)
+  event.preventDefault();
+  // const user = auth
+  const userEmail = document.getElementById('userEmail').value
+  const userPassword = document.getElementById('userPassword').value
+ 
+  signInWithEmailAndPassword(auth, userEmail, userPassword)
     .then((userCredential) => {
       // Signed in 
+      console.log('Signed in')
       const user = userCredential.user;
-      location.href = `./profile.html`
+      location.href = `./dashboard.html`
       // ...
     })
     .catch((error) => {
@@ -131,20 +131,20 @@ but.addEventListener(`click`, async () => {
     });
 })
 
-const CheckingUser = (user) => {
-  if (user) {
+// const CheckingUser = (user) => {
+//   if (user) {
 
-    console.log('User is logged in:', user.email);
+//     console.log('User is logged in:', user.email);
 
-    // Perform the redirect here, e.g.:
-    window.location.href = './profile.html';
+//     // Perform the redirect here, e.g.:
+//     window.location.href = './profile.html';
 
 
-    //const interval = setInterval(myIntervalFunction, 1000); // 1000 milliseconds = 1 second
-  } else {
+//     //const interval = setInterval(myIntervalFunction, 1000); // 1000 milliseconds = 1 second
+//   } else {
 
-    console.log('User is logged out');
-  }
-};
+//     console.log('User is logged out');
+//   }
+// };
 
-onAuthStateChanged(auth, CheckingUser)
+// onAuthStateChanged(auth, CheckingUser)
