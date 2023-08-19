@@ -127,6 +127,7 @@ let userSignedIn = (event) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorMessage)
+      alert("Please Check your Console For the error (Can't make a model for it but will make it later soon inshallah) :)")
       // ..
     });
 }

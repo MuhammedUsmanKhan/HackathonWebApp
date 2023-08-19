@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, updatePassword, onAuthStateChanged , signOut } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
-import { doc, getDoc , getFirestore} from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, updatePassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
+import { doc, updateDoc, getDoc, getFirestore } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDizRqFG9fzEbtNmhmkdsuQVZ9O1vQMAHY",
@@ -28,22 +28,52 @@ const newPass = document.getElementById('newPass');
 const confirmNewPass = document.getElementById('confirmNewPass');
 const changePassBut = document.getElementById('changePassBut');
 let user = document.getElementById('user');
-let userName = async (userID)=>{
-//    const userDoc = auth.currentUser.uid
+let userName = async (userID) => {
+    //    const userDoc = auth.currentUser.uid
     const docRef = doc(db, "userDetails", userID);
     const docSnap = await getDoc(docRef);
-    
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
 
-      user.innerHTML = `Welcome ! ${docSnap.data().firstName} ${docSnap.data().lastName} <span class="p-2"><i class="fa-sharp fa-solid fa-pen-to-square"></i></span>`;
+    if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+
+        user.innerHTML = `Welcome ! ${docSnap.data().firstName} ${docSnap.data().lastName}`;
 
     } else {
-      // docSnap.data() will be undefined in this case
-      console.log("No such document!");
+        // docSnap.data() will be undefined in this case
+        console.log("No such document!");
     }
 
 }
+//////////////Edit Work left But soon will be completed /////////////////////////////////
+let editUserNamPara = document.getElementById("editUserNamPara");
+let userInput = document.createElement("input");
+let editUserNam = () => {
+    let userContainer = document.getElementById("userContainer");
+    user.classList.add('hidden');
+    userInput.addEventListener('keypress', userNameUpdated)
+    userInput.setAttribute("type", "text");
+    userContainer.insertBefore(userInput, editUserNamPara);
+
+}
+
+let userNameUpdated = async (event) => {
+
+    if (event.key === 13) {
+        const name = userInput.value
+        let user = auth.currentUser.email
+        console.log(user)
+        const washingtonRef = doc(db, "userDetails", user);
+
+        // Set the "capital" field of the city 'DC'
+        await updateDoc(washingtonRef, {
+            firstName: name
+        });
+        user.classList.remove('hidden');
+        event.target.classList.add('hidden');
+    }
+}
+
+editUserNamPara.addEventListener(`click`, editUserNam)
 
 let logInBut = document.getElementById('logInBut')
 
@@ -60,10 +90,10 @@ logInBut.addEventListener(`click`, () => {
 onAuthStateChanged(auth, (user) => {
     if (user) {
 
-       userName(user.email)
+        userName(user.email)
         let passwordResetFunction = async (event) => {
             event.preventDefault();
-        
+
             if (newPass.value === confirmNewPass.value) {
                 try {
                     await updatePassword(user, newPass.value);
@@ -78,11 +108,12 @@ onAuthStateChanged(auth, (user) => {
                 // Add code here to display a password mismatch error message.
             }
         }
-        
+
         changePassBut.addEventListener("click", passwordResetFunction);
 
     } else {
         console.log("User is signed out");
+        location.href = './signin.html'
         // Add code here to handle a signed-out user, such as redirecting to a login page.
     }
 });

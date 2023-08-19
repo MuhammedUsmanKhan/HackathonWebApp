@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Create a div element with the specified classes
       // Create the main container div
       const container = document.createElement('div');
-      container.className = 'bg-white p-8 rounded-lg shadow-md w-3/4';
+      container.className = 'bg-white p-8 rounded-lg shadow-md w-full';
 
       // Create the inner div for the rounded image and post details
       const innerDiv = document.createElement('div');
@@ -133,6 +133,16 @@ let singleUserPosts = (event) => {
   const unsubscribe = onSnapshot(q, (querySnapshot) => {
     let blogContainer = document.getElementById('blogContainer')
     blogContainer.innerHTML = '';
+    const backButDiv = document.createElement('div');
+    backButDiv.setAttribute('class', 'flex justify-start w-full ');
+    const backBut = document.createElement('button');
+    backBut.addEventListener('click', () =>{
+      location.reload();
+    })
+    backButDiv.appendChild(backBut);
+    backBut.innerText = "Go Back"
+    backBut.className = 'text-blue-500 text-left font-semibold py-2 hover:text-blue-600';
+    blogContainer.appendChild(backButDiv)
     querySnapshot.forEach((doc) => {
 
       console.log(doc.data())
@@ -216,9 +226,10 @@ let singleUserPosts = (event) => {
         //buttonsDiv.appendChild(deleteButton);
 
         // Append all elements to the main container div
-        innerDiv.classList.add(`flex-col`)
+        // innerDiv.classList.add(`flex-col`)
         innerDiv.appendChild(authorImage);
         innerDiv.appendChild(postDetailsDiv);
+
 
         container.appendChild(innerDiv);
         container.appendChild(postContent);
@@ -237,8 +248,8 @@ let singleUserPosts = (event) => {
 
 let logOutBut = document.getElementById('logOutBut')
 let logInBut = document.getElementById('logInBut')
-logInBut.addEventListener('click',()=>{
-location.href = './AppFiles/signin.html'
+logInBut.addEventListener('click', () => {
+  location.href = './AppFiles/signin.html'
 })
 const CheckingUser = (user) => {
   if (user) {
@@ -266,3 +277,24 @@ const CheckingUser = (user) => {
 
 onAuthStateChanged(auth, CheckingUser)
 
+// Get the current date and time
+const now = new Date();
+const currentHour = now.getHours();
+
+// Define variables for different greetings
+let greeting;
+
+if (currentHour < 12) {
+  greeting = "Good morning!";
+} else if (currentHour < 17) {
+  greeting = "Good afternoon!";
+} else if (currentHour < 20) {
+  greeting = "Good evening!";
+} else {
+  greeting = "Good night!";
+}
+
+// Print or use the greeting as needed
+console.log(greeting);
+
+document.getElementById('abc').innerHTML = greeting;
